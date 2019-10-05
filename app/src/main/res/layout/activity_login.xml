@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+  <data>
+    <import type="android.view.View" />
+    <variable
+        name="viewmodel"
+        type="com.nnbinh.jumbo.ui.activities.login.LoginVM"
+        />
+  </data>
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@drawable/bg_login"
+      >
+    
+    <TextView
+        android:id="@+id/txt_header"
+        style="@style/AppTheme.TextView.Header.H1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_60"
+        android:text="@string/hello"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/txt_sub_header"
+        style="@style/AppTheme.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_in_to_your_account"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_header"
+        app:layout_constraintEnd_toEndOf="@+id/txt_header"
+        app:layout_constraintStart_toStartOf="@+id/txt_header"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lout_user_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite20"
+        android:padding="@dimen/space_12"
+        android:layout_marginStart="@dimen/space_32"
+        android:layout_marginTop="@dimen/space_60"
+        android:layout_marginEnd="@dimen/space_32"
+        android:hint="@string/user_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_sub_header"
+        >
+      <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:maxLength="50"
+          android:singleLine="true"
+          />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lout_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite20"
+        android:paddingLeft="@dimen/space_12"
+        android:paddingRight="@dimen/space_12"
+        android:paddingBottom="@dimen/space_12"
+        android:paddingTop="@dimen/space_8"
+        android:hint="@string/password"
+        app:layout_constraintEnd_toEndOf="@id/lout_user_name"
+        app:layout_constraintStart_toStartOf="@id/lout_user_name"
+        app:layout_constraintTop_toBottomOf="@+id/lout_user_name"
+        app:passwordToggleEnabled="true"
+        >
+      <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="numberPassword"
+          android:maxLength="50"
+          android:singleLine="true"
+          />
+    </com.google.android.material.textfield.TextInputLayout>
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="@{viewmodel.isProcessing()? View.VISIBLE : View.GONE}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/AppTheme.Button.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_24"
+        android:text="@string/sign_in"
+        app:layout_constraintEnd_toEndOf="@id/lout_user_name"
+        app:layout_constraintStart_toStartOf="@id/lout_user_name"
+        app:layout_constraintTop_toBottomOf="@+id/lout_password"
+        />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

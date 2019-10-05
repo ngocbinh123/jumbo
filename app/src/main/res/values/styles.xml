@@ -1,20 +1,58 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
+  <!-- Base application theme. -->
+  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="android:windowBackground">@android:color/white</item>
+    <item name="android:fontFamily">@font/f_arima_madurai_regular</item>
+    <item name="android:textSize">@dimen/size_12</item>
+  </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+  <style name="AppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+  </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+  <style name="AppTheme.NoActionBar.FullScreen">
+    <item name="android:windowFullscreen">true</item>
+    <item name="android:windowContentOverlay">@null</item>
+  </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+  <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+  <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+  <style name="AppTheme.TextView">
+    <item name="android:includeFontPadding">false</item>
+  </style>
+
+  <style name="AppTheme.TextView.Header">
+    <item name="android:fontFamily">@font/f_arima_madurai_black</item>
+  </style>
+
+  <style name="AppTheme.TextView.Header.H1">
+    <item name="android:textSize">@dimen/size_60</item>
+  </style>
+
+  <style name="AppTheme.Button">
+    <item name="android:fontFamily">@font/f_arima_madurai_bold</item>
+    <item name="android:textAllCaps">true</item>
+    <item name="android:textSize">@dimen/size_16</item>
+  </style>
+
+  <style name="AppTheme.Button.Colored" parent="Widget.AppCompat.Button.Colored">
+    <item name="android:fontFamily">@font/f_arima_madurai_bold</item>
+    <item name="android:textAllCaps">true</item>
+    <item name="android:textSize">@dimen/size_16</item>
+    <item name="android:background">@drawable/btn_white_border_corner</item>
+    <item name="android:textColor">@color/colorPrimary</item>
+
+  </style>
+
+  <style name="AppTheme.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
+    <item name="android:textColor">@color/colorPrimary</item>
+  </style>
 </resources>
