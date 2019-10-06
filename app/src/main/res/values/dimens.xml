@@ -2,6 +2,7 @@
   <dimen name="fab_margin">16dp</dimen>
 
   <dimen name="size_12">12sp</dimen>
+  <dimen name="size_14">14sp</dimen>
   <dimen name="size_16">16sp</dimen>
   <dimen name="size_24">24sp</dimen>
   <dimen name="size_32">32sp</dimen>
@@ -16,4 +17,7 @@
   <dimen name="space_60">60dp</dimen>
   <dimen name="corner_cell">8dp</dimen>
   <dimen name="height_of_dlg_button">36dp</dimen>
+  <dimen name="size_avatar">150dp</dimen>
+  <dimen name="height_img_super">200dp</dimen>
+  <dimen name="height_img_product">100dp</dimen>
 </resources>

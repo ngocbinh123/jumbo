@@ -1,10 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-  <data></data>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+  <data>
+    <variable
+        name="frgmVM"
+        type="com.nnbinh.jumbo.ui.fragments.account.AccountVM"/>
+  </data>
   <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/space_16"
+        />
+    <ImageView
+        android:id="@+id/img_avatar"
+        android:layout_width="@dimen/size_avatar"
+        android:layout_height="@dimen/size_avatar"
+        android:layout_marginTop="@dimen/space_32"
+        android:scaleType="fitCenter"
+        android:src='@{frgmVM.accountInfo.sex.equals("Nam") ? @drawable/ic_avatar_men : @drawable/ic_avatar_women}'
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src='@drawable/ic_avatar_women'
+        />
+
+    <TextView
+        android:id="@+id/txt_header"
+        style="@style/AppTheme.TextView.Header.H3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:text="@{frgmVM.accountInfo.fullName}"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="@+id/img_avatar"
+        app:layout_constraintStart_toStartOf="@+id/img_avatar"
+        app:layout_constraintTop_toBottomOf="@id/img_avatar"
+        tools:text="Nguyen Van ABC"
+        />
+
+    <TextView
+        android:id="@+id/txt_sub_header"
+        style="@style/AppTheme.TextView.Header.H4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/f_arima_madurai_light"
+        android:paddingStart="@dimen/space_8"
+        android:paddingEnd="@dimen/space_8"
+        android:text="@{frgmVM.accountInfo.userName}"
+        app:layout_constraintEnd_toEndOf="@+id/txt_header"
+        app:layout_constraintStart_toStartOf="@+id/txt_header"
+        app:layout_constraintTop_toBottomOf="@id/txt_header"
+        tools:text="ABC.Nguyen"
+        />
+
+    <TextView
+        android:id="@+id/txt_info"
+        style="@style/AppTheme.TextView.Header.H4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginTop="@dimen/space_32"
+        android:paddingStart="@dimen/space_8"
+        android:paddingEnd="@dimen/space_8"
+        android:text="@string/info_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_sub_header"
+        />
+
+    <TextView
+        android:id="@+id/tv_address"
+        style="@style/AppTheme.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:text="@string/address"
+        app:layout_constraintEnd_toStartOf="@id/line_left"
+        app:layout_constraintTop_toBottomOf="@id/txt_info"
+        />
+
+    <TextView
+        android:id="@+id/tv_address_value"
+        style="@style/AppTheme.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_4"
+        android:text="@{frgmVM.accountInfo.address}"
+        app:layout_constraintBottom_toBottomOf="@id/tv_address"
+        app:layout_constraintStart_toEndOf="@id/tv_address"
+        app:layout_constraintTop_toTopOf="@id/tv_address"
+        tools:text="Go Vap, HCM"
+        />
+
+    <TextView
+        android:id="@+id/tv_birthday"
+        style="@style/AppTheme.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:text="@string/birthday"
+        app:layout_constraintEnd_toStartOf="@id/line_left"
+        app:layout_constraintTop_toBottomOf="@id/tv_address"
+        />
+
+    <TextView
+        android:id="@+id/tv_birthday_value"
+        style="@style/AppTheme.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_4"
+        android:text="@{frgmVM.accountInfo.birthday}"
+        app:layout_constraintBottom_toBottomOf="@id/tv_birthday"
+        app:layout_constraintStart_toEndOf="@id/tv_birthday"
+        app:layout_constraintTop_toTopOf="@id/tv_birthday"
+        tools:text="09/10/1991"
+        />
+
+    <TextView
+        android:id="@+id/tv_sex"
+        style="@style/AppTheme.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:text="@string/sex"
+        app:layout_constraintEnd_toStartOf="@id/line_left"
+        app:layout_constraintTop_toBottomOf="@id/tv_birthday"
+        />
+
+    <TextView
+        android:id="@+id/tv_sex_value"
+        style="@style/AppTheme.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_4"
+        android:text="@{frgmVM.accountInfo.sex}"
+        app:layout_constraintBottom_toBottomOf="@id/tv_sex"
+        app:layout_constraintStart_toEndOf="@id/tv_sex"
+        app:layout_constraintTop_toTopOf="@id/tv_sex"
+        tools:text="Nam"
+        />
+
+
+    <TextView
+        android:id="@+id/txt_contact"
+        style="@style/AppTheme.TextView.Header.H4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_16"
+        android:paddingStart="@dimen/space_8"
+        android:paddingEnd="@dimen/space_8"
+        android:text="@string/contact"
+        app:layout_constraintStart_toStartOf="@+id/txt_info"
+        app:layout_constraintTop_toBottomOf="@id/tv_sex"
+        />
+
+    <TextView
+        android:id="@+id/tv_email"
+        style="@style/AppTheme.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:text="@string/email"
+        app:layout_constraintEnd_toStartOf="@id/line_left"
+        app:layout_constraintTop_toBottomOf="@id/txt_contact"
+        />
+
+    <TextView
+        android:id="@+id/tv_email_value"
+        style="@style/AppTheme.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_4"
+        android:text="@{frgmVM.accountInfo.email}"
+        app:layout_constraintBottom_toBottomOf="@id/tv_email"
+        app:layout_constraintStart_toEndOf="@id/tv_email"
+        app:layout_constraintTop_toTopOf="@id/tv_email"
+        tools:text="abc.nguyen@gmail.com"
+        />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        style="@style/AppTheme.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:text="@string/phone"
+        app:layout_constraintEnd_toStartOf="@id/line_left"
+        app:layout_constraintTop_toBottomOf="@id/tv_email"
+        />
+
+    <TextView
+        android:id="@+id/tv_phone_value"
+        style="@style/AppTheme.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_4"
+        android:text="@{frgmVM.accountInfo.phone}"
+        app:layout_constraintBottom_toBottomOf="@id/tv_phone"
+        app:layout_constraintStart_toEndOf="@id/tv_phone"
+        app:layout_constraintTop_toTopOf="@id/tv_phone"
+        tools:text="0931111222"
+        />
 
     <Button
         android:id="@+id/btn_sign_out"

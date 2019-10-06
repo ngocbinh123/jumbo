@@ -17,5 +17,6 @@
   <color name="colorLightGreen">#599532</color>
   <color name="colorLightGrey">#F5F5F5</color>
   <color name="colorWhite20">#33FFFFFF</color>
+  <color name="colorWhite50">#4DFFFFFF</color>
   <color name="colorBorder">#DADADA</color>
 </resources>

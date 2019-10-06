@@ -10,19 +10,16 @@ import androidx.room.Update
 import io.reactivex.Completable
 
 @Dao
-interface SuperMarketDao {
-  @Query("SELECT * FROM SuperMarket")
-  fun getAll(): LiveData<List<SuperMarket>>
+interface AccountInfoDao {
+  @Query("SELECT * FROM AccountInfo WHERE id = :userId")
+  fun getById(userId: Int): LiveData<List<AccountInfo>>
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insertAll(vararg item: SuperMarket): Completable
-
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insert(item: SuperMarket): Completable
+  fun insert(item: AccountInfo): Completable
 
   @Delete
-  fun delete(item: SuperMarket)
+  fun delete(item: AccountInfo)
 
   @Update
-  fun update(vararg item: SuperMarket)
+  fun update(vararg item: AccountInfo)
 }

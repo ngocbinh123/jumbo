@@ -30,7 +30,7 @@ class AccountFrgm: BaseFragment() {
     val binding = DataBindingUtil.inflate<FrgmAccountBinding>(
         inflater, R.layout.frgm_account, container, false)
     binding.lifecycleOwner = this
-
+    binding.frgmVM = frgmVM
     setupObservers()
 
     return binding.root

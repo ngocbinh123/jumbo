@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+  <data>
+    <variable
+        name="item"
+        type="com.nnbinh.jumbo.db.Product"
+        />
+
+    <variable
+        name="clickListener"
+        type="android.view.View.OnClickListener"
+        />
+  </data>
+  <androidx.cardview.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/space_12"
+      android:layout_marginEnd="@dimen/space_12"
+      android:layout_marginTop="@dimen/space_8"
+      android:layout_marginBottom="@dimen/space_4"
+      app:cardCornerRadius="@dimen/corner_cell"
+      android:onClick="@{clickListener}">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+      <ImageView
+          android:id="@+id/img_item"
+          android:layout_width="match_parent"
+          android:layout_height="100dp"
+          android:src="@drawable/img_box"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          />
+
+      <TextView
+          android:id="@+id/txt_header"
+          style="@style/AppTheme.TextView.Header.H4"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_marginTop="@dimen/space_16"
+          android:text="@{item.name}"
+          android:maxLines="2"
+          tools:text="Bình xịt muỗi (600g)"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/img_item"
+          />
+
+      <TextView
+          android:id="@+id/txt_price"
+          style="@style/AppTheme.TextView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_marginStart="@dimen/space_12"
+          android:layout_marginTop="@dimen/space_8"
+          android:paddingEnd="@dimen/space_8"
+          android:text="@string/price"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/txt_header"
+          />
+
+      <TextView
+          android:id="@+id/txt_price_value"
+          style="@style/AppTheme.TextView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:text="@{item.vNPrice}"
+          android:textColor="@color/colorPrimaryDark"
+          app:layout_constraintBottom_toBottomOf="@id/txt_price"
+          app:layout_constraintStart_toEndOf="@+id/txt_total"
+          app:layout_constraintTop_toTopOf="@id/txt_price"
+          tools:text="22000"
+          />
+
+      <TextView
+          android:id="@+id/txt_total"
+          style="@style/AppTheme.TextView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:paddingEnd="@dimen/space_8"
+          android:text="@string/remaining_number"
+          app:layout_constraintTop_toBottomOf="@id/txt_price"
+          app:layout_constraintStart_toStartOf="@id/txt_price"
+          app:layout_constraintBottom_toBottomOf="parent"
+          />
+
+      <TextView
+          android:id="@+id/txt_total_value"
+          style="@style/AppTheme.TextView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:text="@{item.remainingNumber}"
+          android:textColor="@color/colorAccent"
+          app:layout_constraintBottom_toBottomOf="@+id/txt_total"
+          app:layout_constraintStart_toEndOf="@+id/txt_total"
+          app:layout_constraintTop_toTopOf="@+id/txt_total"
+          tools:text="43/120"
+          />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.cardview.widget.CardView>
+</layout>

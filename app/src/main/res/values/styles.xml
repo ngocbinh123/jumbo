@@ -8,7 +8,7 @@
     <item name="colorAccent">@color/colorAccent</item>
     <item name="android:windowBackground">@android:color/white</item>
     <item name="android:fontFamily">@font/f_arima_madurai_regular</item>
-    <item name="android:textSize">@dimen/size_12</item>
+    <item name="android:textSize">@dimen/size_14</item>
   </style>
 
   <style name="AppTheme.NoActionBar">
@@ -28,6 +28,7 @@
   <style name="AppTheme.TextView">
     <item name="android:includeFontPadding">false</item>
   </style>
+
 
   <style name="AppTheme.TextView.Header">
     <item name="android:fontFamily">@font/f_arima_madurai_black</item>
@@ -61,7 +62,6 @@
     <item name="android:textSize">@dimen/size_16</item>
     <item name="android:background">@drawable/btn_white_border_corner</item>
     <item name="android:textColor">@color/colorPrimary</item>
-
   </style>
 
   <style name="AppTheme.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">

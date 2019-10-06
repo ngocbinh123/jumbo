@@ -1,6 +1,9 @@
 package com.nnbinh.jumbo.ui.fragments.account
 
+import androidx.lifecycle.MutableLiveData
 import com.nnbinh.jumbo.MissionViewModel
+import com.nnbinh.jumbo.R
+import com.nnbinh.jumbo.db.AccountInfo
 import com.nnbinh.jumbo.event.Command
 import com.nnbinh.jumbo.event.SingleLiveEvent
 import com.nnbinh.jumbo.obj.CurrentUser
@@ -14,6 +17,9 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class AccountVM @Inject constructor() : MissionViewModel() {
+  val accountInfo = MutableLiveData<AccountInfo>().apply {
+    value = getAccountInfo()
+  }
   @Inject lateinit var userRepo: UserRepo
   fun logout() {
     val dispose = Observable.fromCallable {
@@ -24,5 +30,31 @@ class AccountVM @Inject constructor() : MissionViewModel() {
           command.value = Command.LogoutSuccess()
         }
     rxDispose.add(dispose)
+  }
+
+  private fun getAccountInfo(): AccountInfo? {
+    val username = CurrentUser.userName()
+
+    return when(username) {
+      "huy.nguyen" -> AccountInfo(id = 101,
+          userName = username,
+          fullName = "Nguyễn Quốc Huy",
+          sex = "Nam",
+          email = "huy.nguyen@gmail.com",
+          address = "Q. Tân Bình, TP. Hồ Chí Minh",
+          phone = "0941444555",
+          birthday = "20/06/1986",
+          image = R.drawable.ic_avatar_men)
+      "linh.tran" -> AccountInfo(id = 101,
+          userName = username,
+          fullName = "Trần Ái Linh",
+          sex = "Nữ",
+          email = "linh.tran@gmail.com",
+          address = "Q.3, TP. Hồ Chí Minh",
+          phone = "0921363159",
+          birthday = "15/02/1994",
+          image = R.drawable.ic_avatar_women)
+      else -> null
+    }
   }
 }

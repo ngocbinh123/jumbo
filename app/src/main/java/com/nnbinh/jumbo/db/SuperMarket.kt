@@ -9,7 +9,7 @@ import java.io.Serializable
 @Entity(tableName = "SuperMarket")
 
 class SuperMarket(
-    @PrimaryKey(autoGenerate = true) var id: Int? = null,
+    @PrimaryKey var id: Int,
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "address") var address: String,
     @ColumnInfo(name = "ward") var ward: String,

@@ -32,6 +32,7 @@ class SuperMarketsFrgm: BaseFragment() {
   private val supermarketsAdpt by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
     SuperMarketsAdpt()
   }
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?): View? {
     val binding = DataBindingUtil.inflate<FrgmSupermarketsBinding>(
