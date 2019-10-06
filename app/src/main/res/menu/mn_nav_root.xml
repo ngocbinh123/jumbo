@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.nnbinh.jumbo.MainActivity">
+  <item
+      android:id="@+id/act_home"
+      android:icon="@drawable/ic_home_black_24dp"
+      android:title="@string/supermarkets" />
+
+  <item
+      android:id="@+id/act_products"
+      android:icon="@drawable/ic_products_black_24dp"
+      android:title="@string/products" />
+
+  <item
+      android:id="@+id/act_account"
+      android:icon="@drawable/ic_person_black_24dp"
+      android:title="@string/account" />
+</menu>

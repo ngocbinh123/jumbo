@@ -116,7 +116,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
 
     val bgColor = if (command.isSucceed)
-      ContextCompat.getColor(this, R.color.colorLightGreen)
+      ContextCompat.getColor(this, R.color.colorPrimaryDark)
     else
       ContextCompat.getColor(this, R.color.colorLightRed)
 

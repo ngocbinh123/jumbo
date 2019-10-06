@@ -37,6 +37,18 @@
     <item name="android:textSize">@dimen/size_60</item>
   </style>
 
+  <style name="AppTheme.TextView.Header.H2">
+    <item name="android:textSize">@dimen/size_32</item>
+  </style>
+
+  <style name="AppTheme.TextView.Header.H3">
+    <item name="android:textSize">@dimen/size_24</item>
+  </style>
+
+  <style name="AppTheme.TextView.Header.H4">
+    <item name="android:textSize">@dimen/size_16</item>
+  </style>
+
   <style name="AppTheme.Button">
     <item name="android:fontFamily">@font/f_arima_madurai_bold</item>
     <item name="android:textAllCaps">true</item>
@@ -54,5 +66,11 @@
 
   <style name="AppTheme.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
     <item name="android:textColor">@color/colorPrimary</item>
+  </style>
+
+  <style name="DlgButton" parent="@style/Widget.AppCompat.Button.Borderless">
+    <item name="android:fontFamily">@font/f_arima_madurai_medium</item>
+    <item name="android:textSize">@dimen/size_16</item>
+    <item name="android:textColor">@color/colorPrimaryDark</item>
   </style>
 </resources>

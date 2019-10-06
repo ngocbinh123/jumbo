@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.nnbinh.jumbo.BaseActivity
 import com.nnbinh.jumbo.R
 import com.nnbinh.jumbo.databinding.ActivityLoginBinding
+import com.nnbinh.jumbo.obj.CurrentUser
+import com.nnbinh.jumbo.ui.activities.root.RootActivity
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_login.btn_login
 import kotlinx.android.synthetic.main.activity_login.lout_password
@@ -30,7 +32,9 @@ class LoginActivity : BaseActivity() {
     })
 
     (viewmodel as LoginVM).isProcessing.observe(this, Observer { isProcess ->
-      if (!isProcess) {
+      if (!isProcess && CurrentUser.isSignedIn()) {
+        RootActivity.start(this)
+        finish()
       }
     })
     btn_login.setOnClickListener {

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/line_left"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_begin="@dimen/space_16"
+      />
+
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/line_right"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_end="@dimen/space_16"
+      />
+
+  <TextView
+      android:id="@+id/tvDlgTitle"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      style="@style/AppTheme.TextView.Header.H3"
+      android:textColor="@color/colorPrimaryDark"
+      tools:text="Dialog title"
+      android:layout_marginTop="@dimen/space_8"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintStart_toEndOf="@id/line_left"
+      app:layout_constraintEnd_toStartOf="@id/line_right"
+      />
+
+  <TextView
+      android:id="@+id/tvDlgContent"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      style="@style/AppTheme.TextView"
+      android:textSize="@dimen/size_16"
+      android:layout_marginTop="@dimen/space_12"
+      app:layout_constraintEnd_toStartOf="@id/line_right"
+      app:layout_constraintStart_toEndOf="@id/line_left"
+      app:layout_constraintTop_toBottomOf="@id/tvDlgTitle"
+      tools:text="Are your sure sign out?"
+      />
+
+  <View
+      android:id="@+id/vLineFooter"
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:background="@color/colorBorder"
+      android:layout_marginTop="@dimen/space_16"
+      app:layout_constraintTop_toBottomOf="@id/tvDlgContent"
+      app:layout_constraintStart_toEndOf="@id/line_left"
+      app:layout_constraintEnd_toStartOf="@id/line_right"
+      />
+
+  <View
+      android:id="@+id/vActLine"
+      android:layout_width="1dp"
+      android:layout_height="29dp"
+      android:background="@android:color/black"
+      android:layout_marginTop="@dimen/space_12"
+      android:layout_marginBottom="@dimen/space_16"
+      app:layout_constraintTop_toBottomOf="@id/vLineFooter"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      />
+
+  <Button
+      android:id="@+id/btnLeft"
+      android:layout_width="0dp"
+      android:layout_height="@dimen/height_of_dlg_button"
+      style="@style/DlgButton"
+      android:layout_marginEnd="@dimen/space_12"
+      tools:text="@string/no"
+      app:layout_constraintBottom_toBottomOf="@+id/vActLine"
+      app:layout_constraintEnd_toStartOf="@+id/vActLine"
+      app:layout_constraintStart_toEndOf="@id/line_left"
+      app:layout_constraintTop_toTopOf="@+id/vActLine"
+      />
+
+  <Button
+      android:id="@+id/btnRight"
+      android:layout_width="0dp"
+      android:layout_height="@dimen/height_of_dlg_button"
+      style="@style/DlgButton"
+      android:layout_marginStart="@dimen/space_12"
+      tools:text="@string/yes"
+      app:layout_constraintBottom_toBottomOf="@+id/vActLine"
+      app:layout_constraintEnd_toStartOf="@id/line_right"
+      app:layout_constraintStart_toEndOf="@id/vActLine"
+      app:layout_constraintTop_toTopOf="@+id/vActLine"
+      />
+
+  <Button
+      android:id="@+id/btnCenter"
+      android:layout_width="wrap_content"
+      android:layout_height="@dimen/height_of_dlg_button"
+      tools:text="@string/close"
+      style="@style/DlgButton"
+      android:visibility="gone"
+      android:layout_marginTop="@dimen/space_8"
+      android:layout_marginBottom="@dimen/space_8"
+      app:layout_constraintTop_toBottomOf="@id/vLineFooter"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      />
+</androidx.constraintlayout.widget.ConstraintLayout>

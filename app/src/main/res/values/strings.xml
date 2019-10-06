@@ -9,4 +9,18 @@
   <string name="sign_in">Sign In</string>
   <string name="hello">Hello</string>
   <string name="sign_in_to_your_account">Sign in to your account</string>
+  <string name="products">Products</string>
+  <string name="supermarkets">Supper Markets</string>
+  <string name="account">Account</string>
+  <string name="sign_out">Sign Out</string>
+  <string name="no">No</string>
+  <string name="yes">Yes</string>
+  <string name="close">Close</string>
+  <string name="check_in_out">Check-In/Out</string>
+  <string name="cancel">Cancel</string>
+  <string name="submit">Submit</string>
+  <string name="check_in_out_at">Are you sure to check-in/out?</string>
+  <string name="super_market">Super market:</string>
+  <string name="time">Time:</string>
+  <string name="check_in_out_successful">Check-In/Out successful.</string>
 </resources>
