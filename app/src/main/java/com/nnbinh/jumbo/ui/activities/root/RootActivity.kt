@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
@@ -87,6 +88,8 @@ class RootActivity : BaseActivity(), HasSupportFragmentInjector {
   private fun loadFragment(frgm: Fragment) {
     supportFragmentManager.beginTransaction()
         .replace(R.id.lout_holder, frgm, frgm::class.java.name)
+        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+        .addToBackStack(null)
         .commit()
   }
 

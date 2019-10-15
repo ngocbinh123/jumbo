@@ -46,6 +46,10 @@ class SuperMarketsFrgm: BaseFragment() {
     super.onViewCreated(view, savedInstanceState)
   }
 
+  override fun onDestroyView() {
+    rclv_supermarket.adapter = null
+    super.onDestroyView()
+  }
   fun onSelectedSuperMarket(superMarket: SuperMarket) {
     CheckInOutDlg.getInstance(superMarket).show(childFragmentManager, CheckInOutDlg::class.java.name)
   }

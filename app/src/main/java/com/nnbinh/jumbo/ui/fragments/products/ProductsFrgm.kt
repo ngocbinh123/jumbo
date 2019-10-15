@@ -39,6 +39,11 @@ class ProductsFrgm : BaseFragment() {
     return binding.root
   }
 
+  override fun onDestroyView() {
+    rclv_products.adapter = null
+    super.onDestroyView()
+  }
+
   private fun setupObservers() {
     frgmVM.command.observe(this, Observer { processCommand(it) })
 
