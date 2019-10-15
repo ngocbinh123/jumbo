@@ -11,10 +11,10 @@ import io.reactivex.Completable
 
 @Dao
 interface AccountInfoDao {
-  @Query("SELECT * FROM AccountInfo WHERE id = :userId")
-  fun getById(userId: Int): LiveData<List<AccountInfo>>
+  @Query("SELECT * FROM AccountInfo WHERE id = :userId LIMIT 1")
+  fun getById(userId: Int): LiveData<AccountInfo>
 
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  @Insert
   fun insert(item: AccountInfo): Completable
 
   @Delete

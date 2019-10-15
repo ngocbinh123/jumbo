@@ -37,11 +37,12 @@ class LoginActivity : BaseActivity() {
         finish()
       }
     })
+
     btn_login.setOnClickListener {
       hideKeyboard()
-      val userName = lout_user_name.editText?.text?.trim().toString()
+      val email = lout_user_name.editText?.text?.trim().toString()
       val password = lout_password.editText?.text?.trim().toString()
-      (viewmodel as LoginVM).validateAndLogin(username = userName, password = password)
+      (viewmodel as LoginVM).validateAndLogin(email = email, password = password)
     }
   }
 }

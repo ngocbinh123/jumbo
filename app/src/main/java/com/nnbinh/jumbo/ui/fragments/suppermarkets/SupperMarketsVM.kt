@@ -1,25 +1,31 @@
 package com.nnbinh.jumbo.ui.fragments.suppermarkets
 
-import androidx.lifecycle.MutableLiveData
 import com.nnbinh.jumbo.MissionViewModel
 import com.nnbinh.jumbo.R
 import com.nnbinh.jumbo.R.drawable
 import com.nnbinh.jumbo.db.SuperMarket
 import com.nnbinh.jumbo.event.Command
 import com.nnbinh.jumbo.repo.SuperMarketRepo
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class SupperMarketsVM @Inject constructor(superMarketRepo: SuperMarketRepo): MissionViewModel() {
-  val supermarkets = MutableLiveData<List<SuperMarket>>(dummySuperMarkets())
+  val supermarkets by lazy { superMarketRepo.getAll() }
 
   init {
-//    if (supermarkets.value.isNullOrEmpty()) {
-//      superMarketRepo.db.superMarketDao().insertAll(*dummySuperMarkets().toTypedArray())
-//
-//      val temp = SuperMarket(id = 200, name = "aba", address = "12", ward = "9", district = "2", city = "HCM",image = R.drawable.img_coop_go_vap)
-//      superMarketRepo.db.superMarketDao().insert(temp)
-//    }
+    if (supermarkets.value.isNullOrEmpty()) {
+      superMarketRepo.saveAll(dummySuperMarkets())
+          .subscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe({
+          }, { e ->
+            logHelper.e(e)
+            command.value = errorHelper.parse(e)
+          })
+    }
   }
+
   fun onSubmitWorkingTime() {
     command.value = Command.Snack(resId = R.string.check_in_out_successful, isSucceed = true)
   }

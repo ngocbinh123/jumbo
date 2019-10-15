@@ -59,7 +59,7 @@ class RootActivity : BaseActivity(), HasSupportFragmentInjector {
     binding.lifecycleOwner = this
 
     setupObservers()
-    setFragment(fragments.first())
+    loadFragment(fragments.first())
     setupNavigation()
   }
 
@@ -77,14 +77,14 @@ class RootActivity : BaseActivity(), HasSupportFragmentInjector {
       }
 
       position?.let { pos ->
-        setFragment(fragments[pos])
+        loadFragment(fragments[pos])
         return@setOnNavigationItemSelectedListener true
       }
       return@setOnNavigationItemSelectedListener false
     }
   }
 
-  private fun setFragment(frgm: Fragment) {
+  private fun loadFragment(frgm: Fragment) {
     supportFragmentManager.beginTransaction()
         .replace(R.id.lout_holder, frgm, frgm::class.java.name)
         .commit()

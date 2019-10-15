@@ -5,22 +5,18 @@ import com.nnbinh.jumbo.MissionViewModel
 import com.nnbinh.jumbo.R
 import com.nnbinh.jumbo.db.AccountInfo
 import com.nnbinh.jumbo.event.Command
-import com.nnbinh.jumbo.event.SingleLiveEvent
 import com.nnbinh.jumbo.obj.CurrentUser
 import com.nnbinh.jumbo.repo.UserRepo
-import com.tumblr.remember.Remember
-import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class AccountVM @Inject constructor() : MissionViewModel() {
-  val accountInfo = MutableLiveData<AccountInfo>().apply {
-    value = getAccountInfo()
-  }
   @Inject lateinit var userRepo: UserRepo
+
+  val accountInfo by lazy { userRepo.getInfo(CurrentUser.userId()) }
+
   fun logout() {
     val dispose = Observable.fromCallable {
       userRepo.clearUser()

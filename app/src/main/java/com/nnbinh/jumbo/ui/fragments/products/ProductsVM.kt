@@ -1,14 +1,28 @@
 package com.nnbinh.jumbo.ui.fragments.products
 
-import androidx.lifecycle.MutableLiveData
 import com.nnbinh.jumbo.MissionViewModel
 import com.nnbinh.jumbo.R.drawable
 import com.nnbinh.jumbo.db.Product
+import com.nnbinh.jumbo.repo.ProductsRepo
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class ProductsVM @Inject constructor(): MissionViewModel() {
-  val products = MutableLiveData<List<Product>>(dummyProducts())
+class ProductsVM @Inject constructor(productRepo: ProductsRepo): MissionViewModel() {
+  val products by lazy { productRepo.getAll() }
 
+  init {
+    if (products.value.isNullOrEmpty()) {
+      productRepo.saveAll(dummyProducts())
+          .subscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe({
+          }, { e ->
+            logHelper.e(e)
+            command.value = errorHelper.parse(e)
+          })
+    }
+  }
   private fun dummyProducts(): List<Product> {
     var  randomIndex = 1001
     return arrayListOf(
