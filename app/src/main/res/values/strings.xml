@@ -35,4 +35,8 @@
   <string name="sex">Sex:</string>
   <string name="address">Address:</string>
   <string name="birthday">Birthday:</string>
+  <string name="msg_sign_out">Do you really want to sign out?</string>
+  <string name="ok">ok</string>
+  <string name="rationale_location">This app needs access to your location so you can check in/out.</string>
+  <string name="msg_thank_for_your_accceptance">Thank for your acceptance.</string>
 </resources>

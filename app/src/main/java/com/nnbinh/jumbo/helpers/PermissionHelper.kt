@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import com.nnbinh.jumbo.R
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
 import java.lang.ref.WeakReference
@@ -23,10 +24,16 @@ class PermissionHelper() : EasyPermissions.PermissionCallbacks {
 
   companion object {
     const val PER_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE
-    val PER_CAMERA = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    val PER_CAMERA =
+        arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    val PER_LOCATIONS = arrayOf(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    )
 
     const val REQUEST_CODE_START_CAMERA = 1212
     const val REQUEST_CODE_WRITE_STORAGE = 1218
+    const val REQUEST_CODE_LOCATION = 1221
 
     const val REQUEST_CODE_ASK_CAMERA_ONLY = 3218
     const val REQUEST_CODE_ASK_STORAGE_ONLY = 3220
@@ -36,6 +43,26 @@ class PermissionHelper() : EasyPermissions.PermissionCallbacks {
   private lateinit var fragRef: WeakReference<Fragment>
   private var isFragment = false
   private var identifyNumber = 0
+
+  fun performLocationTask(identifyNumber: Int = 0) {
+    val context = reference.get() ?: return
+    this.identifyNumber = identifyNumber
+    if (hasPermission(*PER_LOCATIONS)) {
+      doAction(REQUEST_CODE_LOCATION)
+    } else {
+      if (isFragment)
+        EasyPermissions.requestPermissions(
+            fragRef.get()!!,
+            context.getString(R.string.rationale_location),
+            REQUEST_CODE_LOCATION, *PER_LOCATIONS
+        )
+      else EasyPermissions.requestPermissions(
+          context, context.getString(R.string.rationale_location),
+          REQUEST_CODE_LOCATION, *PER_LOCATIONS
+      )
+    }
+  }
+
   fun shouldOpenAppSettingsDialog(requestCode: Int) {
     if (reference.get() == null) return
     AppSettingsDialog.Builder(reference.get()!!)
@@ -56,8 +83,10 @@ class PermissionHelper() : EasyPermissions.PermissionCallbacks {
   /**
    *  must let wrapper handle on request permission result
    */
-  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
-      grantResults: IntArray) {
+  override fun onRequestPermissionsResult(
+      requestCode: Int, permissions: Array<out String>,
+      grantResults: IntArray
+  ) {
     EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
   }
 
@@ -93,6 +122,19 @@ class PermissionHelper() : EasyPermissions.PermissionCallbacks {
   private fun doAction(requestCode: Int) {
     val context = reference.get() ?: return
     when (requestCode) {
+      REQUEST_CODE_LOCATION -> {
+        if (context is LocationPermissionCallBack) {
+          if (hasPermission(*PER_LOCATIONS)) context.onLocationGrant(identifyNumber)
+          else context.onLocationDeny(identifyNumber)
+        }
+
+        if (isFragment) {
+          val frag = fragRef.get()
+          if (frag is CameraPermissionCallBack)
+            if (hasPermission(*PER_CAMERA)) frag.onCameraGrant(identifyNumber)
+            else frag.onCameraDeny(identifyNumber)
+        }
+      }
       REQUEST_CODE_START_CAMERA -> {
         if (context is CameraPermissionCallBack) {
           if (hasPermission(*PER_CAMERA)) context.onCameraGrant(identifyNumber)
@@ -123,12 +165,18 @@ class PermissionHelper() : EasyPermissions.PermissionCallbacks {
     }
   }
 
-  interface CameraPermissionCallBack{
-    fun onCameraGrant(identifyNumber : Int)
-    fun onCameraDeny(identifyNumber : Int)
+  interface LocationPermissionCallBack {
+    fun onLocationGrant(identifyNumber: Int)
+    fun onLocationDeny(identifyNumber: Int)
   }
+
+  interface CameraPermissionCallBack {
+    fun onCameraGrant(identifyNumber: Int)
+    fun onCameraDeny(identifyNumber: Int)
+  }
+
   interface StoragePermissionCallBack {
-    fun onStorageGrant(identifyNumber : Int)
-    fun onStorageDeny(identifyNumber : Int)
+    fun onStorageGrant(identifyNumber: Int)
+    fun onStorageDeny(identifyNumber: Int)
   }
 }

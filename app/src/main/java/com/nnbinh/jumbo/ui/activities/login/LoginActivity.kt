@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.nnbinh.jumbo.BaseActivity
+import com.nnbinh.jumbo.BuildConfig
 import com.nnbinh.jumbo.R
 import com.nnbinh.jumbo.databinding.ActivityLoginBinding
 import com.nnbinh.jumbo.obj.CurrentUser
@@ -27,6 +28,15 @@ class LoginActivity : BaseActivity() {
     binding.viewmodel = viewmodel as LoginVM
     binding.lifecycleOwner = this
 
+    if (BuildConfig.DEBUG) {
+      lout_user_name.editText?.setText("hnguyen@abiz.co")
+      lout_password.editText?.setText( "Aa@1234567")
+    }
+    setupObservables()
+    setupListeners()
+  }
+
+  private fun setupObservables() {
     (viewmodel as LoginVM).command.observe(this, Observer { command ->
       processCommand(command)
     })
@@ -37,7 +47,9 @@ class LoginActivity : BaseActivity() {
         finish()
       }
     })
+  }
 
+  private fun setupListeners() {
     btn_login.setOnClickListener {
       hideKeyboard()
       val email = lout_user_name.editText?.text?.trim().toString()

@@ -1,5 +1,7 @@
 package com.nnbinh.jumbo.ui.activities.root
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +16,9 @@ import com.nnbinh.jumbo.R
 import com.nnbinh.jumbo.UserViewModel
 import com.nnbinh.jumbo.databinding.ActivityRootBinding
 import com.nnbinh.jumbo.db.SuperMarket
+import com.nnbinh.jumbo.event.Command
+import com.nnbinh.jumbo.helpers.PermissionHelper
+import com.nnbinh.jumbo.helpers.PermissionHelper.LocationPermissionCallBack
 import com.nnbinh.jumbo.ui.fragments.account.AccountFrgm
 import com.nnbinh.jumbo.ui.fragments.products.ProductsFrgm
 import com.nnbinh.jumbo.ui.fragments.suppermarkets.SuperMarketsFrgm
@@ -24,7 +29,7 @@ import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_root.nav_root
 import javax.inject.Inject
 
-class RootActivity : BaseActivity(), HasSupportFragmentInjector {
+class RootActivity : BaseActivity(), HasSupportFragmentInjector, LocationPermissionCallBack {
   companion object {
     fun start(context: Context) {
       val intent = Intent(context, RootActivity::class.java)
@@ -34,6 +39,9 @@ class RootActivity : BaseActivity(), HasSupportFragmentInjector {
 
   @Inject
   lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
+
+  val permissionHelper: PermissionHelper by lazy { PermissionHelper(this) }
+  val REQ_ACCESS_LOCATION = 1007
 
   override fun supportFragmentInjector(): AndroidInjector<Fragment> {
     return androidInjector
@@ -62,6 +70,32 @@ class RootActivity : BaseActivity(), HasSupportFragmentInjector {
     setupObservers()
     loadFragment(fragments.first())
     setupNavigation()
+    permissionHelper.performLocationTask(REQ_ACCESS_LOCATION)
+  }
+
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
+      grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    permissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
+  }
+
+  @SuppressLint("MissingSuperCall")
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    when (requestCode) {
+      REQ_ACCESS_LOCATION -> {
+        if (resultCode == Activity.RESULT_OK) {
+          (viewmodel as UserViewModel).command.value = Command.Snack(resId = R.string.msg_thank_for_your_accceptance, isSucceed = true)
+        }
+      }
+      else -> permissionHelper.onActivityResult(requestCode, resultCode, data)
+    }
+  }
+
+  override fun onLocationGrant(identifyNumber: Int) {
+//    (viewmodel as UserViewModel).command.value = Command.Snack(resId = R.string.msg_thank_for_your_accceptance, isSucceed = true)
+  }
+
+  override fun onLocationDeny(identifyNumber: Int) {
   }
 
   private fun setupObservers() {

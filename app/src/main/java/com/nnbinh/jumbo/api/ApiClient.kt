@@ -15,7 +15,7 @@ import javax.inject.Singleton
 class ApiClient @Inject constructor() {
   @Inject
   lateinit var logHelper: LogHelper
-  private val API_URL = "https://abizntgroupwebapi.azurewebsites.net/api/"
+  private val API_URL = "https://ntgroupipamwebapi.azurewebsites.net/api/"
 
   private val retrofit: Retrofit by lazy {
     val builder = Retrofit.Builder()

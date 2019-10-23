@@ -69,8 +69,8 @@ abstract class BaseActivity : AppCompatActivity() {
     }
   }
 
-  fun logout() {
-    (viewmodel as UserViewModel).logout()
+  fun signOut() {
+    (viewmodel as UserViewModel).signOut()
   }
 
   private fun backToLoginScreen() {

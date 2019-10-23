@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.nnbinh.jumbo.BaseFragment
 import com.nnbinh.jumbo.R
 import com.nnbinh.jumbo.databinding.FrgmAccountBinding
+import com.nnbinh.jumbo.ui.activities.root.RootActivity
+import com.nnbinh.jumbo.ui.dialogs.ConfirmDlg
 import kotlinx.android.synthetic.main.frgm_account.btn_sign_out
 import kotlin.LazyThreadSafetyMode.SYNCHRONIZED
 
@@ -39,7 +41,8 @@ class AccountFrgm: BaseFragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     btn_sign_out.setOnClickListener {
-      frgmVM.logout()
+      ConfirmDlg.getNewInstance(ConfirmDlg.MODE_LOGOUT_BY_USER)
+          .show(childFragmentManager, ConfirmDlg::class.java.name)
     }
   }
 
